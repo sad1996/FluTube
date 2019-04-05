@@ -21,6 +21,7 @@ class FluTubeState extends State<FluTube> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
           border: Border.all(color: Theme.of(context).dividerColor)),
+      margin: EdgeInsets.only(top: 20),
       width: MediaQuery.of(context).size.width,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
