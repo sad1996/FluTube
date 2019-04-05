@@ -31,6 +31,7 @@ class FluTubeState extends State<FluTube> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
+      height: 200.0,
       child: Stack(
         fit: StackFit.expand,
         children: <Widget>[
