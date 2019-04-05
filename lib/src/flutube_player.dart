@@ -50,15 +50,15 @@ class FluTubeState extends State<FluTube> {
                     Icons.play_arrow,
                   ),
                   onPressed: () {
-                    youtube = FlutterYoutube.playYoutubeVideoByUrl(
+                    FlutterYoutube.playYoutubeVideoByUrl(
                         apiKey: widget.apiKey,
                         videoUrl: widget.videoUrl,
                         autoPlay: true, //default falase
                         fullScreen: true //default false
-                    );
-                    youtube.onVideoEnded.listen((onData) {
-                      //if (mounted) Navigator.of(context).pop();
-                    });
+                        )
+                      ..youtube.onVideoEnded.listen((onData) {
+                        //if (mounted) Navigator.of(context).pop();
+                      });
                   },
                 ),
               ),
