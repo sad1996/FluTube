@@ -15,7 +15,6 @@ class FluTube extends StatefulWidget {
 }
 
 class FluTubeState extends State<FluTube> {
-  FlutterYoutube youtube;
 
   @override
   initState() {
@@ -55,10 +54,7 @@ class FluTubeState extends State<FluTube> {
                         videoUrl: widget.videoUrl,
                         autoPlay: true, //default falase
                         fullScreen: true //default false
-                        )
-                      ..youtube.onVideoEnded.listen((onData) {
-                        //if (mounted) Navigator.of(context).pop();
-                      });
+                        );
                   },
                 ),
               ),
