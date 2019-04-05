@@ -36,7 +36,7 @@ class FluTubeState extends State<FluTube> {
                   child: Container(
                     color: Colors.white,
                     child: IconButton(
-                      iconSize: 30.0,
+                      iconSize: 40.0,
                       color: Colors.black,
                       icon: Icon(
                         Icons.play_arrow,
