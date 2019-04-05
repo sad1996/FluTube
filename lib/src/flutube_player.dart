@@ -29,43 +29,41 @@ class FluTubeState extends State<FluTube> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        child: Stack(
-          fit: StackFit.expand,
-          children: <Widget>[
-            Image.network(
-              _videoThumbURL(widget.videoUrl),
-              fit: BoxFit.cover,
-            ),
-            Center(
-              child: ClipOval(
-                child: Container(
-                  color: Colors.white,
-                  child: IconButton(
-                    iconSize: 50.0,
-                    color: Colors.black,
-                    icon: Icon(
-                      Icons.play_arrow,
-                    ),
-                    onPressed: () {
-                      youtube = FlutterYoutube.playYoutubeVideoByUrl(
-                          apiKey: widget.apiKey,
-                          videoUrl: widget.videoUrl,
-                          autoPlay: true, //default falase
-                          fullScreen: true //default false
-                      );
-                      youtube.onVideoEnded.listen((onData) {
-                        //if (mounted) Navigator.of(context).pop();
-                      });
-                    },
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          Image.network(
+            _videoThumbURL(widget.videoUrl),
+            fit: BoxFit.cover,
+          ),
+          Center(
+            child: ClipOval(
+              child: Container(
+                color: Colors.white,
+                child: IconButton(
+                  iconSize: 50.0,
+                  color: Colors.black,
+                  icon: Icon(
+                    Icons.play_arrow,
                   ),
+                  onPressed: () {
+                    youtube = FlutterYoutube.playYoutubeVideoByUrl(
+                        apiKey: widget.apiKey,
+                        videoUrl: widget.videoUrl,
+                        autoPlay: true, //default falase
+                        fullScreen: true //default false
+                    );
+                    youtube.onVideoEnded.listen((onData) {
+                      //if (mounted) Navigator.of(context).pop();
+                    });
+                  },
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
