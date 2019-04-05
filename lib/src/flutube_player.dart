@@ -15,7 +15,6 @@ class FluTube extends StatefulWidget {
 }
 
 class FluTubeState extends State<FluTube> {
-
   @override
   initState() {
     super.initState();
@@ -28,39 +27,42 @@ class FluTubeState extends State<FluTube> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 200.0,
-      child: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          Image.network(
-            _videoThumbURL(widget.videoUrl),
-            fit: BoxFit.cover,
-          ),
-          Center(
-            child: ClipOval(
-              child: Container(
-                color: Colors.white,
-                child: IconButton(
-                  iconSize: 50.0,
-                  color: Colors.black,
-                  icon: Icon(
-                    Icons.play_arrow,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8.0),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 200.0,
+        child: Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
+            Image.network(
+              _videoThumbURL(widget.videoUrl),
+              fit: BoxFit.cover,
+            ),
+            Center(
+              child: ClipOval(
+                child: Container(
+                  color: Colors.white,
+                  child: IconButton(
+                    iconSize: 50.0,
+                    color: Colors.black,
+                    icon: Icon(
+                      Icons.play_arrow,
+                    ),
+                    onPressed: () {
+                      FlutterYoutube.playYoutubeVideoByUrl(
+                          apiKey: widget.apiKey,
+                          videoUrl: widget.videoUrl,
+                          autoPlay: true, //default falase
+                          fullScreen: true //default false
+                          );
+                    },
                   ),
-                  onPressed: () {
-                    FlutterYoutube.playYoutubeVideoByUrl(
-                        apiKey: widget.apiKey,
-                        videoUrl: widget.videoUrl,
-                        autoPlay: true, //default falase
-                        fullScreen: true //default false
-                        );
-                  },
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
