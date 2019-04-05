@@ -15,12 +15,14 @@ class FluTube extends StatefulWidget {
 }
 
 class FluTubeState extends State<FluTube> {
-
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(8.0),
       child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0),
+            border: Border.all(color: Theme.of(context).dividerColor)),
         width: MediaQuery.of(context).size.width,
         child: AspectRatio(
           aspectRatio: 16 / 9,
