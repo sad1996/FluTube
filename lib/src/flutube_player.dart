@@ -1,20 +1,14 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_youtube/flutter_youtube.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
-class FluTube extends StatefulWidget {
+class FluTube extends StatelessWidget {
+  FluTube(this.videoUrl, this.apiKey);
+
   /// Youtube URL of the video
   final String videoUrl;
   final String apiKey;
 
-  FluTube(this.videoUrl, this.apiKey, {Key key}) : super(key: key);
-
-  @override
-  FluTubeState createState() => FluTubeState();
-}
-
-class FluTubeState extends State<FluTube> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,8 +24,9 @@ class FluTubeState extends State<FluTube> {
           child: Stack(
             fit: StackFit.expand,
             children: <Widget>[
-              Image.network(
-                _videoThumbURL(widget.videoUrl),
+              CachedNetworkImage(
+                key: UniqueKey(),
+                imageUrl: _videoThumbURL(videoUrl),
                 fit: BoxFit.cover,
               ),
               Center(
@@ -46,8 +41,8 @@ class FluTubeState extends State<FluTube> {
                       ),
                       onPressed: () {
                         FlutterYoutube.playYoutubeVideoByUrl(
-                            apiKey: widget.apiKey,
-                            videoUrl: widget.videoUrl,
+                            apiKey: apiKey,
+                            videoUrl: videoUrl,
                             autoPlay: true, //default falase
                             fullScreen: true //default false
                             );
@@ -64,8 +59,7 @@ class FluTubeState extends State<FluTube> {
   }
 
   String _videoThumbURL(String yt) {
-    String id = yt.substring(yt.indexOf('v=') + 2);
-    if (id.contains('&')) id = id.substring(0, id.indexOf('&'));
+    var id = FlutterYoutube.getIdFromUrl(yt);
     return "http://img.youtube.com/vi/$id/0.jpg";
   }
 }
